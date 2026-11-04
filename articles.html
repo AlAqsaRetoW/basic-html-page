@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Articles | Al Aqsa Reto Wijaya | Full-Stack Developer</title>
+    <meta name="description"
+        content="Full articles by Al Aqsa Reto Wijaya on semantic HTML structure, SEO meta tags, accessible forms, and why structure should come before styling.">
+    <meta name="keywords"
+        content="semantic HTML, SEO meta tags, HTML forms, separation of concerns, accessible markup, frontend articles, web development">
+    <meta name="author" content="Al Aqsa Reto Wijaya">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://example.com/articles.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Articles | Al Aqsa Reto Wijaya | Full-Stack Developer">
+    <meta property="og:description"
+        content="Full articles by Al Aqsa Reto Wijaya on semantic HTML structure, SEO meta tags, accessible forms, and why structure should come before styling.">
+    <meta property="og:url" content="https://example.com/articles.html">
+    <meta property="og:site_name" content="Al Aqsa Reto Wijaya">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Articles | Al Aqsa Reto Wijaya | Full-Stack Developer">
+    <meta name="twitter:description"
+        content="Full articles by Al Aqsa Reto Wijaya on semantic HTML structure, SEO meta tags, accessible forms, and why structure should come before styling.">
+</head>
+
+<body>
+    <header>
+        <nav aria-label="Main navigation">
+            <a href="index.html">Aqsa Reto W</a>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="articles.html" aria-current="page">Articles</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <nav aria-label="Breadcrumb">
+            <ol>
+                <li><a href="index.html">Home</a></li>
+                <li>Articles</li>
+            </ol>
+        </nav>
+
+        <section aria-labelledby="articles-heading">
+            <h1 id="articles-heading">Articles</h1>
+            <p>Notes on structuring websites properly before styling them.</p>
+
+            <nav aria-label="Article list">
+                <ol>
+                    <li><a href="#semantic-html">How to Structure a Semantic HTML Page</a></li>
+                    <li><a href="#seo-meta-tags">SEO Meta Tags That Actually Matter</a></li>
+                    <li><a href="#forms">Building Forms That Are Easy to Style Later</a></li>
+                    <li><a href="#no-styling">Why You Should Not Style During the Structure Phase</a></li>
+                </ol>
+            </nav>
+
+            <article id="semantic-html">
+                <header>
+                    <h2>How to Structure a Semantic HTML Page</h2>
+                    <p>By Al Aqsa Reto Wijaya &middot; <time datetime="2026-01-12">January 12, 2026</time> &middot; 5 min
+                        read</p>
+                </header>
+
+                <p>Most people start a page with a <code>div</code> and keep going. It works, but it throws away the
+                    information the browser and assistive technology could have used for free.</p>
+
+                <h3>The skeleton</h3>
+                <p>Every page needs the same bones:</p>
+                <ul>
+                    <li><code>header</code> at the top, holding the logo and navigation.</li>
+                    <li><code>nav</code> for the set of links that move you between pages.</li>
+                    <li><code>main</code> wrapping the content unique to this page. One per document.</li>
+                    <li><code>footer</code> for copyright, secondary links and contact details.</li>
+                </ul>
+
+                <h3>Section versus article</h3>
+                <p>This is the pair people get wrong. Use <code>section</code> for a thematic chunk of a page — a group
+                    of projects, a block of reviews. Use <code>article</code> for something that would still make sense
+                    syndicated on its own: a blog post, a product card, a comment.</p>
+                <p>A rough test: if you pulled it out and put it in an RSS feed, would it stand alone? That is an
+                    <code>article</code>.</p>
+
+                <h3>Labelling sections</h3>
+                <p>Give every <code>section</code> an accessible name with <code>aria-labelledby</code> pointing at its
+                    heading. Screen reader users can then jump between regions instead of listening to the whole page.
+                </p>
+                <pre><code>&lt;section aria-labelledby="projects-heading"&gt;
+    &lt;h2 id="projects-heading"&gt;Projects&lt;/h2&gt;
+&lt;/section&gt;</code></pre>
+
+                <h3>Headings in order</h3>
+                <p>One <code>h1</code> per page, then <code>h2</code> for major sections, <code>h3</code> inside those.
+                    Do not skip levels to get a smaller font size — that is what CSS is for.</p>
+
+                <h3>Why this pays off later</h3>
+                <p>When the stylesheet arrives, it can target real landmarks instead of guessing at class names. You end
+                    up writing less CSS, and the markup survives a redesign.</p>
+            </article>
+
+            <article id="seo-meta-tags">
+                <header>
+                    <h2>SEO Meta Tags That Actually Matter</h2>
+                    <p>By Al Aqsa Reto Wijaya &middot; <time datetime="2026-02-03">February 3, 2026</time> &middot; 4 min
+                        read</p>
+                </header>
+
+                <p>You can put a hundred tags in a <code>head</code>. Five of them do almost all the work.</p>
+
+                <h3>1. Title</h3>
+                <p>The single strongest on-page signal. Keep it under about 60 characters, put the distinguishing word
+                    first, and make it unique per page.</p>
+                <pre><code>&lt;title&gt;Projects | Aqsa | Frontend Developer&lt;/title&gt;</code></pre>
+
+                <h3>2. Description</h3>
+                <p>Not a ranking factor, but it is the snippet people read. Around 150–160 characters, written as a
+                    sentence, not a keyword list.</p>
+
+                <h3>3. Canonical</h3>
+                <p>Tells search engines which URL is the real one when the same content is reachable several ways.</p>
+                <pre><code>&lt;link rel="canonical" href="https://example.com/projects.html"&gt;</code></pre>
+
+                <h3>4. Open Graph</h3>
+                <p>Controls the preview when someone pastes your link into a chat app. At minimum:
+                    <code>og:type</code>, <code>og:title</code>, <code>og:description</code>, <code>og:url</code> and
+                    <code>og:image</code>.</p>
+
+                <h3>5. Twitter card</h3>
+                <p>Same idea for X. <code>summary</code> or <code>summary_large_image</code>, plus title and
+                    description. If Open Graph is present, Twitter falls back to it, so this is mostly belt and braces.
+                </p>
+
+                <h3>What to skip</h3>
+                <p><code>keywords</code> has been ignored by major engines for years. <code>revisit-after</code> and
+                    <code>rating</code> are noise. Add <code>keywords</code> anyway if you like — it costs nothing and
+                    some smaller crawlers still read it.</p>
+
+                <h3>Per page, not per site</h3>
+                <p>The most common mistake is one shared <code>head</code> with a single title and description. Every
+                    page needs its own, or every page competes for the same query.</p>
+            </article>
+
+            <article id="forms">
+                <header>
+                    <h2>Building Forms That Are Easy to Style Later</h2>
+                    <p>By Al Aqsa Reto Wijaya &middot; <time datetime="2026-03-18">March 18, 2026</time> &middot; 5 min
+                        read</p>
+                </header>
+
+                <p>Forms are where structure work pays off fastest. Get the markup right and styling is mostly a matter
+                    of selecting the elements that are already there.</p>
+
+                <h3>Always pair label with input</h3>
+                <p>The <code>for</code> attribute on the label must match the <code>id</code> of the input. This is not
+                    optional — without it, screen readers announce a bare text box with no name.</p>
+                <pre><code>&lt;label for="email"&gt;Email&lt;/label&gt;
+&lt;input type="email" id="email" name="email" required&gt;</code></pre>
+                <p>Wrapping the input inside the label also works, but the explicit pairing is easier to read.</p>
+
+                <h3>Group related fields</h3>
+                <p><code>fieldset</code> draws a box around a group; <code>legend</code> names it. A contact form
+                    naturally splits into "your details" and "your message".</p>
+
+                <h3>Let the browser validate</h3>
+                <p>These attributes do the job of a lot of JavaScript:</p>
+                <ul>
+                    <li><code>required</code> — the field must be filled.</li>
+                    <li><code>type="email"</code>, <code>type="tel"</code>, <code>type="url"</code> — format checks and
+                        the right mobile keyboard.</li>
+                    <li><code>minlength</code>, <code>maxlength</code>, <code>pattern</code> — length and format rules.
+                    </li>
+                    <li><code>autocomplete</code> — lets password managers and browsers fill the form correctly.</li>
+                </ul>
+
+                <h3>Use the right control</h3>
+                <p><code>select</code> for a short fixed list, <code>textarea</code> for multi-line text,
+                    <code>input type="checkbox"</code> for independent toggles, radio buttons when exactly one option
+                    must be chosen. Do not build a dropdown out of divs.</p>
+
+                <h3>Name attributes matter</h3>
+                <p>Whatever server or handler receives the form reads the <code>name</code> attribute, not the
+                    <code>id</code>. Every control that should be submitted needs one.</p>
+
+                <h3>Buttons, not divs</h3>
+                <p><code>&lt;button type="submit"&gt;</code> is focusable, keyboard-operable and announced correctly. A
+                    styled <code>div</code> with a click handler is none of those things.</p>
+            </article>
+
+            <article id="no-styling">
+                <header>
+                    <h2>Why You Should Not Style During the Structure Phase</h2>
+                    <p>By Al Aqsa Reto Wijaya &middot; <time datetime="2026-04-09">April 9, 2026</time> &middot; 4 min
+                        read</p>
+                </header>
+
+                <p>The roadmap.sh basic HTML project says it outright: do not style the website, only focus on the
+                    structure. That instruction is doing more work than it looks like.</p>
+
+                <h3>What goes wrong when you mix them</h3>
+                <p>You pick an <code>h3</code> because it renders at the size you wanted. You add a wrapper
+                    <code>div</code> because you need a flex container. Six weeks later the markup describes your old
+                    design instead of your content, and the stylesheet is full of selectors that exist only to undo
+                    other selectors.</p>
+
+                <h3>Structure is a decision about meaning</h3>
+                <p>Is this a list of projects or a list of articles? Is that a standalone post or part of a longer page?
+                    Those questions have right answers that do not change when the design does. Answering them first
+                    means the document stays correct.</p>
+
+                <h3>Styling is a decision about presentation</h3>
+                <p>Those answers change constantly. Keeping them in a separate file means a redesign touches one file,
+                    not eight.</p>
+
+                <h3>The practical sequence</h3>
+                <ol>
+                    <li>Write the content as plain text, in order.</li>
+                    <li>Wrap it in semantic elements: header, nav, main, section, article, footer.</li>
+                    <li>Add headings in a single hierarchy, one <code>h1</code> per page.</li>
+                    <li>Add the <code>head</code> metadata: title, description, canonical, Open Graph.</li>
+                    <li>Only now open a stylesheet.</li>
+                </ol>
+
+                <h3>How to tell you are done</h3>
+                <p>Turn off CSS in the browser. If the page still reads as a sensible document — title at the top,
+                    sections in order, links that make sense — the structure is right. If it collapses into an
+                    undifferentiated wall of text, the markup was carrying the design and the design was carrying the
+                    markup.</p>
+
+                <h3>One more thing</h3>
+                <p>This is also the cheapest accessibility win available. Screen readers, reader modes and text
+                    extraction tools all read the document, not the stylesheet. A well-structured page degrades
+                    gracefully everywhere for free.</p>
+            </article>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Al Aqsa Reto Wijaya. All rights reserved.</p>
+        <nav aria-label="Footer navigation">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="articles.html">Articles</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </footer>
+</body>
+
+</html>
